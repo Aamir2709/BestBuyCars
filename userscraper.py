@@ -9,7 +9,7 @@ from flask_cors import CORS,cross_origin
 import requests,bs4
 from bs4 import BeautifulSoup
 
-model=pickle.load(open('RandomForestModel.pkl','rb'))
+model=pickle.load(open('rfmodel.pkl','rb'))
 car = pd.read_csv("Cleaned_cardekho.csv")
 
 car_models=sorted(car['model'].unique())

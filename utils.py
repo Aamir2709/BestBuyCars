@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
-model=pickle.load(open('RandomForestModel.pkl','rb'))
+model=pickle.load(open('rfmodel.pkl','rb'))
 scars = pd.read_csv("scrapedcars.csv")
 car = pd.read_csv("Cleaned_cardekho.csv")
 

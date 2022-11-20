@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 
 
-model=pickle.load(open('RandomForestModel.pkl','rb'))
+model=pickle.load(open('rfmodel.pkl','rb'))
 car = pd.read_csv("Cleaned_cardekho.csv")
 
 scars = pd.read_csv("scrapedcars.csv")
