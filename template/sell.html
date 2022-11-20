@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head> 
+<title>Sell your Car</title>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>Best Buy Cars</title>
+
+    <link rel="stylesheet" type="text/css" href="static/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="static/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="static/assets/css/sell.css">
+    
+</head>
+<body>
+ <!-- ***** Preloader Start ***** -->
+ <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+  
+  
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky" >
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="http://127.0.0.1:5000/" class="logo">Car Price Estimator<em> Website</em></a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li><a href="http://127.0.0.1:5000/">Home</a></li>
+                          <li><a href="http://127.0.0.1:5000/cars">Cars</a></li>
+                          <li><a href="http://127.0.0.1:5000/sell_car" class="active">Price Estimator</a></li>
+                          <li><a href="http://127.0.0.1:5000/contact">Contact</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+
+  <center>
+    <div class="regform"><h1>Used Car Price Estimator</h1></div>
+    <div class="main">
+<form method="POST" action="/predict_price">
+
+<h2 class="name">Company</h2>
+<select class="option" name="company" id="company" required="1" onchange="load_car_models(this.id,'car_model')">
+
+{% for company in companies %}
+<option value="{{ company }}">{{company}}</option>
+{% endfor %}
+
+</select>
+
+<h2 class="name">Model</h2>
+<select class="option" name="car_model" id="car_model">
+    {% for model in car_models %}
+    <option value="{{ model }}">{{model}}</option>
+    {% endfor %}
+</select>
+
+<h2 class="name">Purchase Year</h2>
+<select class="option" name="year" id="year">
+    {% for year in years %}
+    <option value="{{ year }}">{{year}}</option>
+    {% endfor %}
+</select>
+
+<h2 class="name">Fuel Type</h2>
+<select class="option" name="fuel" id="fuel">
+    {% for fuel_type in fuel_types %}
+    {% if fuel_type!='LPG'%}
+    <option value="{{ fuel_type }}">{{fuel_type}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+
+<h2 class="name">Km Travelled</h2>
+<input type="text" name="km" id="km" placeholder="Enter no. of kms driven" class="name">
+
+
+<h3 class="name">Predicted Price</h3>
+<button type="submit" onclick="send_data()">Predict Price</button> 
+
+
+
+</label>
+
+
+</form>
+<br>
+                <div class="row">
+                    <div class="col-12" style="text-align: center">
+                        <h2><span id="prediction"></span></h2>
+                    </div>
+
+
+</div>
+</center>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Copyright © Aamir Baugwala <a href="github.com/Aamir2709">Github</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    function load_car_models(company_id,car_model_id)
+    {
+        var company=document.getElementById(company_id);
+        var car_model= document.getElementById(car_model_id);
+        console.log(company.value);
+        car_model.value="";
+        car_model.innerHTML="";
+        {% for company in companies %}
+            if( company.value == "{{ company }}")
+            {
+                {% for model in car_models %}
+                    {% if company in model %}
+
+                        var newOption= document.createElement("option");
+                        newOption.value="{{ model }}";
+                        newOption.innerHTML="{{ model }}";
+                        car_model.options.add(newOption);
+                    {% endif %}
+                {% endfor %}
+            }
+        {% endfor %}
+    }
+
+    function form_handler(event) {
+        event.preventDefault(); // Don't submit the form normally
+    }
+
+
+    function send_data()
+    {   
+        //supress form default behaviour
+        //send and receive data to /predict
+        document.querySelector('form').addEventListener("submit",form_handler);
+
+        var fd=new FormData(document.querySelector('form'));
+
+        var xhr= new XMLHttpRequest({mozSystem: true});//xhr:xml http req
+
+        xhr.open('POST','/predict',true);
+        document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == XMLHttpRequest.DONE){
+                document.getElementById('prediction').innerHTML="Prediction: ₹"+xhr.responseText;
+
+            }
+        };
+
+        xhr.onload= function(){};
+
+        xhr.send(fd);
+    }
+
+</script>
+<!-- jQuery -->
+<script src="static/assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="static/assets/js/popper.js"></script>
+<script src="static/assets/js/bootstrap.min.js"></script>
+
+<!-- Plugins -->
+<script src="static/assets/js/scrollreveal.min.js"></script>
+<script src="static/assets/js/waypoints.min.js"></script>
+<script src="static/assets/js/jquery.counterup.min.js"></script>
+<script src="static/assets/js/imgfix.min.js"></script> 
+<script src="static/assets/js/mixitup.js"></script> 
+<script src="static/assets/js/accordions.js"></script>
+
+<!-- Global Init -->
+<script src="static/assets/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Buy Cars</title>
+  <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/all.css">
+</head>
+
+<body class="w-100">
+  <!-- Header -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- Actual search box -->
+            <div class="form-group has-search position-relative">
+              <span class="fa fa-search form-control-feedback position-absolute"></span>
+              <input type="text" class="form-control form-input" placeholder="Mumbai">
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="form-group has-search">
+              <input type="text" class="form-control form-input find-car"
+                placeholder="Find Cars and more...">
+            </div>
+          </li>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Section Banner -->
+  <section id="banner" class="w-100">
+    <div class="bg-banner"></div>
+  </section>
+  <!-- Ads Section 
+  <section id="ad" class="d-flex align-items-center" style="height:35vh">
+    <div class="container-fluid d-flex align-items-center" style="height: 30vh;">
+      <div class="container-fluid w-100" style="height: 20vh; width: 65%;">
+        <div class="ad-bg"></div>
+      </div>
+    </div>
+  </section>
+  -->
+  <!-- Featured Section -->
+  <section id="featured w-100">
+    <div class="container " style="background-color: #f4f4f4; min-height: 60vh; border-radius: 10px;">
+      <div class="featured-head d-inline">
+        <span class="view-more">View more</span>
+        <h3 class="featured-heading"> ML Price Estimated Cars</h3>
+      </div>
+      <div class="card-deck card-container">
+        {% for i in mlindex %}
+          
+        <div class="card">
+          <div class="card-img-top card-img">
+            <span class="badge badge-warning featured-badge">Featured</span>
+            <img src={{carpix[i]}}>
+          </div>
+          <div class="card-body">
+            <label>Model</label>
+            <h5 class="card-title">{{models[i]}}</h5>
+            <label>Selling Price</label>
+            <h5 class="card-title" style='display=flex'>Rs {{sellingprice[i]}}</h5>
+            <label>Year</label>
+            <h5 class="card-title">{{years[i]}}</h5>
+            <label>Kms Driven</label>
+            <h5 class="card-title">{{kms[i]}}</h5>
+            
+            <label>FuelType</label>
+            <h5 class="card-title">{{fueltype[i]}}</h5>
+            
+            <label>ML Price:</label>
+            <h5 class="card-title">Rs {{mlprices[i]}}</h5>
+            
+            
+            
+          </div>
+          <span class="yellow-strip"></span>
+        </div>
+        
+        {% endfor %}
+
+        <!--
+        <div class="card">
+          <div class="card-img-top card-img">
+            <span class="badge badge-warning featured-badge">Featured</span>
+            <img src="static/images/2.jfif">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Rs 1,170,000</h5>
+            <p class="card-text text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt,
+              quos!</p>
+            <p class="card-text text-secondary bottom-card"><small class="text-muted">Jan 15</small></p>
+          </div>
+          <span class="yellow-strip"></span>
+
+        </div>
+        <div class="card">
+          <div class="card-img-top card-img">
+            <span class="badge badge-warning featured-badge">Featured</span>
+            <img src="static/images/3.jpg" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Rs 2,22,700</h5>
+            <p class="card-text text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+              omnis!</p>
+            <p class="card-text text-secondary bottom-card"><small class="text-muted">May 10</small></p>
+          </div>
+          <span class="yellow-strip"></span>
+
+        </div>
+        <div class="card">
+          <div class="card-img-top card-img">
+            <span class="badge badge-warning featured-badge">Featured</span>
+            <img src="static/images/4.jpg">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Rs 1,11,500</h5>
+            <p class="card-text text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+              aliquid.</p>
+            <p class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></p>
+          </div>
+          <span class="yellow-strip"></span>
+
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+  <!-- Section Fresh Recommendations -->
+
+  <section id="fresh-recommendations" class="w-100">
+    <div class="container recommendation-heading">
+      <h3>Fresh Recommendations</h3>
+    </div>
+    <div class="container recommendations-container">
+      <div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img">
+              <img src="static/images/5.jpg">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 1,11,500</h5>
+              <p class="card-text text-secondary">Nexa</p>
+              <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img">
+              <img src="static/images/6.jpg">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 1,00,000</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img">
+              <span class="badge badge-warning featured-badge">Featured</span>
+              <img src="static/images/7.jpg">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 2,26,000</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+            <span class="yellow-strip"></span>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img"><img src="static/images/8.jpg"></div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 3,24,800</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img">
+              <span class="badge badge-warning featured-badge">Featured</span>
+              <img src="static/images/9.jpg">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 1,00,000</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+            <span class="yellow-strip"></span>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card text-white bg-primary">
+            <div class="card-body">
+              <h5 class="card-title">Want to see your stuff here.</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-outline-light w-100">Start Selling</button>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img"><img src="static/images/10.jpg"></div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 1,50,000</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-img-top card-img">
+              <span class="badge badge-warning featured-badge">Featured</span>
+              <img src="static/images/11.jpg">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rs 35,000</h5>
+              <p class="card-text text-secondary">Lorem ipsum dolor sit amet.</p>
+              <div class="footer-container">
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+                <span class="card-text text-secondary bottom-card"><small class="text-muted">Feb 14</small></span>
+
+              </div>
+            </div>
+            <span class="yellow-strip"></span>
+          </div>
+        </div>
+      </div>
+      
+  </section>
+
+  <!-- Second Ads Section -->
+  <section id="second-ad">
+    <div class="container" style="width: 75%;">
+      <div class="second-ad-bg"></div>
+    </div>
+  </section>
+
+  
+
+ 
+
+  <!-- Optional JavaScript -->
+  <script src="js/Script.js"></script>
+  <script src="js/all.js"></script>
+  <!-- Popper.js First, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
