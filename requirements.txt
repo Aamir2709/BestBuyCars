@@ -3,11 +3,10 @@ bs4==0.0.1
 Flask==2.0.2
 Flask-Cors==3.0.10
 gunicorn==20.1.0
-matplotlib==3.5.1
+
 numpy==1.21.6
 pandas
-pickleshare==0.7.5
-pikepdf==5.1.0
+
 requests==2.26.0
 WSGIserver==1.3
 sklearn==0.0
